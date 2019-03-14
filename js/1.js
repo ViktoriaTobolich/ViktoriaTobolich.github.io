@@ -7,7 +7,9 @@ $(document).ready(function(){
   }
   $(".menu_item, .menu_footer ul").on("click","a",function(e){
         e.preventDefault();
+
         scroll($($(this).attr('href')));
+
       });
 
   //кнопка вверх
