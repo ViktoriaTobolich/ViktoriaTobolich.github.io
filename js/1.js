@@ -12,7 +12,7 @@ $(document).ready(function(){
 
       });
 
-  //кнопка вверх
+  //button up
   $(".top, .up").on("click",function(e){
       e.preventDefault();
       $("html body").animate({
@@ -20,7 +20,7 @@ $(document).ready(function(){
           },600);
   });
 
-  //мобильное меню
+  //mobile menu
   $(".mob_menu").on("click",function(){
     $(".menu_item").slideToggle(400);
   });
