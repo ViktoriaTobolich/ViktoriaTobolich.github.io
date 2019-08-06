@@ -1,45 +1,44 @@
 $(document).ready(function(){
+  let $topBtn = $(".top");
   //плавный скролл меню
   function scroll(id) {
-    $("html body").animate({
-          scrollTop: $(id).offset().top
-        },700);
+    $('html, body').animate({
+      scrollTop: $(id).offset().top
+    },700);
   }
   $(".menu_item, .menu_footer ul").on("click","a",function(e){
-        e.preventDefault();
-
-        scroll($($(this).attr('href')));
-
-      });
+    e.preventDefault();
+    let $item = $(this).attr('href');
+    scroll($($item));
+  });
 
   //button up
-  $(".top, .up").on("click",function(e){
+  $topBtn.add(".up").on("click",function(e){
       e.preventDefault();
-      $("html body").animate({
-            scrollTop:0
-          },600);
+    $('html, body').animate({
+      scrollTop: 0
+    }, 1000);
   });
 
   //mobile menu
   $(".mob_menu").on("click",function(){
     $(".menu_item").slideToggle(400);
   });
-  if($(window).scrollTop() == 0){
-    $(".top").css("display", "none");
+
+  if($(window).scrollTop() === 0){
+    $topBtn.css("display", "none");
   }
   $(window).on("scroll",function(){
-    if($(window).scrollTop()+$(window).height()>=$(document).height()){
-      $(".top").addClass("top_end");
+    let windowScrollBottom = $(window).scrollTop() + $(window).height();
+
+    if( windowScrollBottom >= $("body").height() ){
+      $topBtn.addClass("top_end");
     }
     else{
-      $(".top").removeClass("top_end");
+      $topBtn.removeClass("top_end");
     }
-    if($(window).scrollTop() == 0){
-      $(".top").css("display", "none");
-    }
-    else{
-      $(".top").css("display", "block");
-    }
+    $(window).scrollTop() === 0 ? $topBtn.css("display", "none"): $topBtn.css("display", "block");
+
   });
 
   //portfolio
@@ -65,7 +64,7 @@ $(document).ready(function(){
   });
 
 // валидация формы
-$('.message').each(function(){
+  $('.message').each(function(){
 	let form = $(this),
         btn = form.find('.footer_button');
 	form.find('.field').addClass('empty_field');
